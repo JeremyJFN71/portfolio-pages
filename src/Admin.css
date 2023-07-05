@@ -1,0 +1,257 @@
+/* Sidebar */
+.sidebar{
+    z-index: 999;
+    overflow: hidden;
+    height: 100vh;
+    background-color: var(--secondary);
+    width: 70px;
+    transition: all 400ms ease;
+    box-shadow: 10px 0 10px 0px #05162a;
+}
+
+.text{
+    transition: all 400ms ease;
+    display: none;
+}
+
+.admin{
+    justify-content: center;
+}
+
+.sidebar.active{
+    transition: all 400ms ease;
+    width: 250px;
+}
+
+.sidebar.active .text{
+    transition: all 400ms ease;
+    display: inline;
+}
+
+.sidebar.active .admin{
+    transition: all 400ms ease;
+    justify-content: space-between;
+}
+
+.sidebar-link{
+    list-style: none;
+    margin: 0;
+}
+
+.sidebar-link-item > a{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 200ms ease;
+}
+
+.sidebar-link-item > a > i{
+    color: var(--font-primary);
+}
+
+.sidebar-link-item > a > span{
+    color: var(--font-secondary);
+}
+
+.sidebar-link-item > a:hover{
+    background-color: #213557;
+    transition: all 200ms ease;
+}
+
+.sidebar-link-item > a.active {
+    background-color: var(--font-primary);
+}
+
+.sidebar-link-item > a.active > i, .sidebar-link-item > a.active > span{
+    color: var(--primary);
+}
+
+.sidebar-footer{
+    transition: all 400ms ease;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+.logout{
+    border: 0;
+    background: transparent;
+}
+
+.logout i{
+    color: rgb(183, 0, 0);
+}
+
+.logout, .fa-right-from-bracket{
+    color: white;
+}
+
+.sidebar.active .sidebar-footer{
+    transition: all 400ms ease;
+    column-gap: 10px;
+}
+
+.sidebar.active .sidebar-footer>.portfolio-link{
+    transition: all 400ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.portfolio-link>a span, .portfolio-link>a i {
+    color: var(--font-secondary);
+}
+
+.portfolio-link>a:hover span, .portfolio-link>a:hover i {
+    color: var(--font-primary);
+}
+/* End of Sidebar */
+
+
+
+/* Content */
+.content{
+    transition: all 400ms ease;
+    width: calc(100% - 70px);
+    position: absolute;
+    right: 0;
+    background-color: var(--primary);
+    min-height:100vh;
+    overflow-y: hidden;
+}
+
+.content::-webkit-scrollbar{
+    display: none;
+}
+
+.sidebar.active ~ .content{
+    transition: all 400ms ease;
+    width: calc(100% - 250px);
+}
+
+.table-wrapper{
+    width: 100%;
+    overflow-x: scroll;
+    border-radius: 10px;
+}
+
+th, td, a{
+    text-decoration: none;
+    color: var(--font-secondary);
+}
+
+.email-container{
+    border-radius: 10px;
+    transition: all 200ms ease;
+    position: relative;
+}
+
+.email-container > a > div{
+    width: 90%;
+}
+
+.email-container > a > div > p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.email-container:hover{
+    transition: all 200ms ease;
+    background-color: var(--tertiary);
+}
+
+.btn-cancel{
+    color: white;
+    border: none;
+}
+
+.btn-cancel:hover{
+    color: rgb(157, 157, 157);
+}
+
+.upload{
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    aspect-ratio: 2/1;
+    background-color: gray;
+    transition: all 200ms ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.upload:hover{
+    transition: all 200ms ease;
+    background-color: rgb(108, 108, 108);
+}
+
+.upload>span{
+    position: absolute;
+    width: 100%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    text-align: center;
+}
+
+.upload>span i{
+    font-size: 70px;
+}
+
+.form-check-input{
+    background-color: var(--tertiary);
+}
+
+.form-check-input:checked{
+    background-color: var(--font-primary);
+}
+
+.backdrop{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 998;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.deleting{
+    overflow: hidden;
+    transform: translateX(90vw);
+    opacity: 0;
+    height: 0px;
+    transition: opacity 200ms ease, transform 400ms ease, height 300ms ease 200ms;
+    pointer-events: none;
+}
+
+.show-email{
+    height: 101px;
+    transition: all 300ms ease;
+}
+/* End of Content */
+
+@media only screen and (max-width: 900px) {
+    .sidebar.active ~ .content{
+        transition: all 400ms ease;
+        width: calc(100% - 70px);
+    }
+
+    .sidebar.active{
+        box-shadow: none;
+    }
+
+    .sidebar.active ~ .backdrop{
+        display: block;
+    }
+}
