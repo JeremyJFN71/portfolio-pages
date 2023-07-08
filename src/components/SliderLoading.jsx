@@ -34,8 +34,8 @@ export default function SliderLoading() {
         <Slider {...settings}>
             {count.map((v)=>(
                 <div key={v} className="p-2 text-center" data-aos="fade-up">
-                    <div className="card odd border-0" style={{height: '350px'}}>
-                        <div className="project-image" style={{background: 'rgb(160,160,160)', cursor: 'default'}}></div>
+                    <div className="card primary border-0" style={{height: '350px'}}>
+                        <div className="project-image" style={{background: 'rgb(160,160,160)', cursor: 'wait'}}></div>
                         <h5 className="my-3 fw-bold placeholder-glow">
                             <span className="placeholder col-4 me-1"></span>
                             <span className="placeholder col-3"></span>

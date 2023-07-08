@@ -13,7 +13,7 @@ export default function Contact() {
         setIsLoading(true)
         const data = {name, email, subject, message}
 
-        await axios.post('api/emails', data)
+        await axios.post('/api/emails', data, {baseURL: process.env.REACT_APP_API})
             .then(()=>{
                 setName('')
                 setEmail('')

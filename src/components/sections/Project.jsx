@@ -12,7 +12,7 @@ export default function Project() {
 
     useEffect(()=>{
         async function fetchData(){
-            await axios.get('/api/projects/show?sort=createdAt&direction=desc')
+            await axios.get('/api/projects/show?sort=createdAt&direction=desc', {baseURL: process.env.REACT_APP_API})
                 .then(res=>{
                     setProjects(res.data)
                 })
