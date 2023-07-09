@@ -22,7 +22,7 @@ export default function ProjectTable({projects}) {
 
         await axios.patch(`/api/projects/${id}/update`, data)
             .then(res=>console.log(res.data))
-            .catch(err=>console.log(err));
+            .catch(err=>console.error(err));
     }
 
     return (

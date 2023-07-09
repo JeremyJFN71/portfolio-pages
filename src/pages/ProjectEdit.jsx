@@ -8,6 +8,8 @@ export default function ProjectEdit() {
     const [project, setProject] = useState({});
     // Submit button
     const [isLoading, setIsLoading] = useState(false);
+    // Reset Button
+    const [resetIsLoading, setResetIsLoading] = useState(false);
     // Modal Image src
     const [image, setImage] = useState('');
 
@@ -21,6 +23,8 @@ export default function ProjectEdit() {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    const modal = document.querySelector('#resetModal');
+
     useEffect(()=>{
         const fetchData = async ()=>{
             await axios.get(`/api/projects/${id}`)
@@ -29,7 +33,7 @@ export default function ProjectEdit() {
                 setName(res.data.name);
                 setLanguage(res.data.language);
                 setDescription(res.data.description);
-                setDemoUrl(res.data.demo_url);
+                setDemoUrl(res.data.demo_url || '');
             })
             .catch(err=>console.log(err.response));
         }
@@ -51,7 +55,7 @@ export default function ProjectEdit() {
 
         await axios.patch(`/api/projects/${project._id}/update`, formData)
             .then(()=>navigate('/admin/project'))
-            .catch(err=>console.log(err.response))
+            .catch(err=>console.error(err.response))
             .finally(()=>setIsLoading(false));
     }
 
@@ -63,12 +67,26 @@ export default function ProjectEdit() {
         }
     }
 
+    const resetProject = async ()=>{
+        setResetIsLoading(true);
+        await axios.patch(`/api/projects/${project._id}/sync`, {full_name: project.full_name})
+            .then(res=>{
+                console.log(res.data);
+                const modalInstance = window.bootstrap.Modal.getInstance(modal);
+                modalInstance.hide();
+                navigate('/admin/project');
+            })
+            .catch(err=>console.error(err.response))
+            .finally(()=>setResetIsLoading(false));
+    }
+
     return (
         <>
             <div className='tertiary' style={{borderRadius: '10px'}} data-aos="fade-up">
                 <div className='d-flex align-items-center justify-content-between py-3 px-2' style={{borderRadius: '10px', boxShadow: '0px 10px 10px 2px #0b192f', position: 'relative'}}>
-                    <h3 className='m-0 text-center' style={{position: 'absolute', right: '25%', left: '25%'}}>Edit Project</h3>
                     <Link to='/admin/project' className="cool-btn-dark"><i className="fa-solid fa-arrow-left"></i></Link>
+                    <h3 className='m-0'>Edit Project</h3>
+                    <span className='cool-btn-dark' data-bs-toggle="modal" data-bs-target="#resetModal"><i className="fa-sharp fa-solid fa-rotate-left"></i></span>
                 </div>
 
                 <form className='mt-3 p-4' method="POST" onSubmit={handleSubmit}>
@@ -88,7 +106,7 @@ export default function ProjectEdit() {
                                     {!selectedImage ? (
                                     <label htmlFor='image' className='upload'>
                                         <span>
-                                            <i class="fa-solid fa-cloud-arrow-up text-white"></i>
+                                            <i className="fa-solid fa-cloud-arrow-up text-white"></i>
                                             <div className='fs-2'>Upload Image</div>
                                         </span>
                                     </label>
@@ -156,6 +174,28 @@ export default function ProjectEdit() {
             </div>
 
             <ModalImage image={image} />
+
+            {/* Reset Modal */}
+            <div className="modal fade" id="resetModal" tabIndex="-1" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content tertiary">
+                        <div className="modal-header" data-bs-theme="dark">
+                            <h1 className="modal-title fs-5 ">Reset Project</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body ">
+                            Are you sure want to reset <b className="">{project.name}</b>?
+                            <div className="mt-5 d-flex gap-2 justify-content-end">
+                                <button type="button" className="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                {!resetIsLoading ? (
+                                <button type="button" className="btn btn-danger" onClick={resetProject}>Reset</button> ) : (
+                                <button type="button" className="btn btn-danger" disabled>Reseting...</button>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

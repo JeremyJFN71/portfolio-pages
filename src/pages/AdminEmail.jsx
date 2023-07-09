@@ -27,7 +27,7 @@ export default function AdminEmail() {
                     setIsEmpty(true);
                 }
                 setEmails(res.data);
-                setLength(res.data.length)
+                setLength(res.data.length);
             })
             .catch(err=>{
                 setIsError(true);
@@ -55,7 +55,8 @@ export default function AdminEmail() {
             .then(()=>{
                 const modal = window.bootstrap.Modal.getInstance(myModal);
                 modal.hide();
-                fetchData();
+                setEmails([]);
+                setLength(0)
             })
             .catch(err=>console.log(err.response))
             .finally(()=>setIsLoading(false));
@@ -102,12 +103,12 @@ export default function AdminEmail() {
                         </div>
                     ))}
 
-                    {/* Modal Delete */}
+                    {/* Delete Modal */}
                     <div className="modal fade" id="deleteModal" tabIndex="-1" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content tertiary">
                                 <div className="modal-header" data-bs-theme="dark">
-                                    <h1 className="modal-title fs-5 ">Delete Email</h1>
+                                    <h1 className="modal-title fs-5 ">Delete Emails</h1>
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div className="modal-body ">

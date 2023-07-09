@@ -29,7 +29,7 @@ export default function Login() {
     return (
         <div className="container">
             <div className="row justify-content-center align-items-center" style={{height: "80vh"}}>
-                <div className="col-xl-4 col-lg-5 col-md-7 col-sm-8 col-11 tertiary p-3" style={{borderRadius: "10px"}} >
+                <div className="col-xl-4 col-lg-5 col-md-7 col-sm-8 col-11 tertiary p-3 shadow-lg" style={{borderRadius: "10px"}} >
                     <div className="mb-5" style={{position: 'relative'}}>
                         <div className="d-flex align-items-center" style={{position: "absolute", top: '0', bottom: '0'}}>
                             <Link to="/" className="cool-btn-dark my-auto">

@@ -32,7 +32,7 @@ export default function EmailDetail() {
 
             <div className="d-flex py-3 px-2 justify-content-between align-items-center" style={{borderRadius: '10px', boxShadow: '0px 10px 10px 2px #0b192f', zIndex: '999'}}>
                 <Link to='/admin/email' className="cool-btn-dark"><i className="fa-solid fa-arrow-left"></i></Link>
-                <h3>{email.subject}</h3>
+                <h3 className="m-0">{email.subject}</h3>
                 <span className="cool-btn-dark" onClick={()=>deleteOne(email._id)}><i className="fa-solid fa-trash"></i></span>
             </div>
 

@@ -2,7 +2,7 @@ import { Routes, Route, Navigate, HashRouter } from 'react-router-dom';
 import { lazy, Suspense } from "react";
 import AOS from 'aos';
 import axios from 'axios';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
+import 'aos/dist/aos.css';
 
 import './App.css';
 import './Admin.css';
@@ -28,8 +28,9 @@ export default function App() {
     offset: '100'
   });
 
+  // Setting axios default
   axios.defaults.withCredentials = true;
-  axios.defaults.baseURL = 'https://api-ahmad-muhajir.cyclic.app';
+  axios.defaults.baseURL = process.env.NODE_ENV==='production' ? 'https://api-ahmad-muhajir.cyclic.app' : 'http://localhost:3001';
 
   return (
     <HashRouter>

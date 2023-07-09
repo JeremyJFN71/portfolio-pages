@@ -1,9 +1,9 @@
 export default function Footer() {
     return (
-        <footer className="py-5 text-white">
+        <footer className="py-5">
             <div className="container">
                 <div className="row justify-content-between">
-                    <div className="col-auto mb-2" data-aos="fade-right" data-aos-offset="30">
+                    <div className="col-auto mb-2 mb-sm-0 d-flex align-items-center" data-aos="fade-right" data-aos-offset="30">
                         <span className="font-secondary">Created and Developed by <a href="https://www.linkedin.com/in/ahmad-muhajir-syamlan/" className="fw-bold font-primary underline-hover" target="_blank" rel="noreferrer">Ahmad Muhajir</a></span>
                     </div>
 

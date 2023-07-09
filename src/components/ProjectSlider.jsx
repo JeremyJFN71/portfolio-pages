@@ -20,7 +20,14 @@ export default function ProjectSlider({projects}) {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2
+                    slidesToScroll: 2,
+                }
+            },
+            {
+                breakpoint: 750,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
                 }
             },
             {
@@ -28,7 +35,6 @@ export default function ProjectSlider({projects}) {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    rows: 1
                 }
             },
         ]
@@ -53,7 +59,7 @@ export default function ProjectSlider({projects}) {
                                     </span>)}
                                 </div>
 
-                                <div style={{overflow: "hidden"}}>
+                                <div style={{overflow: 'hidden'}}>
                                     <img src={project.image} alt="" className="project-image img-fluid" data-bs-toggle="modal" data-bs-target="#imageModal" onClick={()=>setImage(project.image)} />
                                 </div>
                                 <div className="card-body">
