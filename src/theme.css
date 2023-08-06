@@ -6,6 +6,11 @@
     --font-secondary: #c2cded;
 }
 
+@font-face {
+    font-family: Aquire;
+    src: url('./assets/Aquire-BW0ox.otf');
+}
+
 .primary{
     background-color: var(--primary);
 }

@@ -4,7 +4,7 @@ export default function Navbar() {
     const [clientWindowHeight, setClientWindowHeight] = useState(0);
 
     const [backgroundTransparacy, setBackgroundTransparacy] = useState(0);
-    const [padding, setPadding] = useState(30);
+    const [padding, setPadding] = useState(20);
     const [boxShadow, setBoxShadow] = useState(0);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function Navbar() {
             backgroundTransparacyVar = 0.8;
         }
 
-        let paddingVar = 25 - backgroundTransparacyVar * 20;
+        let paddingVar = 20 - backgroundTransparacyVar * 20;
         let boxShadowVar = backgroundTransparacyVar;
         setBackgroundTransparacy(backgroundTransparacyVar);
         setPadding(paddingVar);
@@ -49,8 +49,8 @@ export default function Navbar() {
             boxShadow: `0px 0px 20px 6px rgba(5, 22, 42, ${boxShadow})`,}}>
 
             <div className="container">
-                <a className="navbar-brand text-white d-flex align-items-center gap-1" href="#hero" style={{fontSize: "25px"}}>
-                    <span>Ahmad Muhajir</span>
+                <a id='logo' className="navbar-brand text-white" href="#hero">
+                    A<span className='font-primary'>M</span>S
                 </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

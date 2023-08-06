@@ -45,7 +45,7 @@ export default function ProjectTable({projects}) {
                         <tr key={project._id} className="text-center">
                             <td className='font-secondary'>{index+1}</td>
                             <td><a href={project.html_url} className="underline-hover font-secondary" target='_blank' rel="noreferrer">{project.name}</a></td>
-                            <td><img src={project.image} alt="" className="project-image" style={{maxHeight: '100px', borderRadius: '5px', width: 'auto'}} data-bs-toggle="modal" data-bs-target="#imageModal" onClick={()=>setImage(project.image)} /></td>
+                            <td><img src={project.image} alt="" className="project-image clickable-image" style={{maxHeight: '100px', borderRadius: '5px', width: 'auto'}} data-bs-toggle="modal" data-bs-target="#imageModal" onClick={()=>setImage(project.image)} /></td>
                             <td className='font-secondary'>{project.owner}</td>
                             <td className='font-secondary'>{project.description}</td>
                             <td className='font-secondary'>{project.language || '-'}</td>

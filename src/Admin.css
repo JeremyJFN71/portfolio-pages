@@ -164,6 +164,16 @@ th, td, a{
     color: var(--font-secondary);
 }
 
+.clickable-image {
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.clickable-image:hover{
+    transition: 400ms;
+    transform: scale(110%);
+}
+
 .email-container{
     border-radius: 10px;
     transition: all 200ms ease;
