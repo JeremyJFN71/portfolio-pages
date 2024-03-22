@@ -1,50 +1,53 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-
 import SliderLoading from "../SliderLoading";
 import Error from "../Error";
 import ProjectSlider from "../ProjectSlider";
+import { showProjects } from "../../services/projectService";
 
 export default function Project() {
-    const [projects, setProjects] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
+   const [projects, setProjects] = useState([]);
+   const [isLoading, setIsLoading] = useState(true);
+   const [isError, setIsError] = useState(false);
 
-    useEffect(()=>{
-        async function fetchData(){
-            await axios.get('/api/projects/show?sort=createdAt&direction=desc')
-                .then(res=>{
-                    setProjects(res.data)
-                })
-                .catch(()=>{
-                    setIsError(true);
-                })
-                .finally(()=>{
-                    setIsLoading(false);
-                })
-        }
+   useEffect(() => {
+      async function fetchData() {
+         const { data, error } = await showProjects();
 
-        fetchData();
-    }, [])
+         if (data) setProjects(data.data);
+         if (error) setIsError(true);
+         setIsLoading(false);
+      }
 
-    let content;
-    if (isLoading){
-        content = <SliderLoading />
-    } else if(isError){
-        content = <Error />
-    } else{
-        content = <ProjectSlider projects={projects}/>
-    }
+      fetchData();
+   }, []);
 
-    return (
-        <section id="project">
-            <div className="container">
-                <span className="text-center d-block fw-bold font-primary" data-aos="fade-up">PROJECT</span>
-                <h1 className="text-center mb-5 fw-bold font-secondary" data-aos="fade-up">My Best Projects</h1>
+   let content;
+   if (isLoading) {
+      content = <SliderLoading />;
+   } else if (isError) {
+      content = <Error />;
+   } else {
+      content = <ProjectSlider projects={projects} />;
+   }
 
-                {content}
+   return (
+      <section id="project">
+         <div className="container">
+            <span
+               className="text-center d-block fw-bold font-primary"
+               data-aos="fade-up"
+            >
+               PROJECT
+            </span>
+            <h1
+               className="text-center mb-5 fw-bold font-secondary"
+               data-aos="fade-up"
+            >
+               My Best Projects
+            </h1>
 
-            </div>
-        </section>
-    )
+            {content}
+         </div>
+      </section>
+   );
 }

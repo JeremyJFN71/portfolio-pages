@@ -6,16 +6,16 @@ import Contact from "../components/sections/Contact";
 import Footer from "../components/Footer";
 
 function App() {
-    return (
-        <>
-            <Navbar />
-            <Hero />
-            <About />
-            <Project />
-            <Contact />
-            <Footer />
-        </>
-    );
+   return (
+      <>
+         <Navbar />
+         <Hero />
+         <About />
+         <Project />
+         <Contact />
+         <Footer />
+      </>
+   );
 }
 
 export default App;

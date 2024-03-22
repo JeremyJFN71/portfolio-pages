@@ -1,32 +1,26 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useOutlet } from "react-router-dom";
+import { checkLogin } from "../services/authService";
 
 export default function Authenticated() {
-    const navigate = useNavigate();
-    const outlet = useOutlet();
-    const [isAuth, setIsAuth] = useState(false);
+   const navigate = useNavigate();
+   const outlet = useOutlet();
+   const [isAuth, setIsAuth] = useState(false);
 
-    useEffect(()=>{
-        async function check(){
-            await axios.get('/api/admin/loggedIn')
-                .then(res=>{
-                    if(!res.data){
-                        return navigate('/admin/login');
-                    }
-                    setIsAuth(true);
-                })
-                .catch(err=>{
-                    console.log(err.response);
-                    navigate('/admin/login');
-                });
-        }
+   useEffect(() => {
+      async function check() {
+         const { data, error } = await checkLogin();
+         if (data) {
+            if (!data.data) {
+               return navigate("/admin/login");
+            }
+            setIsAuth(true);
+         }
 
-        check();
-    }, [navigate])
-    return (
-        <>
-        {isAuth && outlet}
-        </>
-    )
+         if (error) navigate("/admin/login");
+      }
+
+      check();
+   }, [navigate]);
+   return <>{isAuth && outlet}</>;
 }
